@@ -1,0 +1,9 @@
+# OS
+.DS_Store
+
+# Local settings (may contain personal tokens)
+.claude/settings.local.json
+
+# Temp/output files
+*.output
+*.log

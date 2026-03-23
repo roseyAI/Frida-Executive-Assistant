@@ -1,0 +1,39 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x \"/Users/roseyrr/Frida - EA/scripts/get_reminders.sh\" \"/Users/roseyrr/Frida - EA/scripts/get_calendar.sh\" \"/Users/roseyrr/Frida - EA/scripts/morning_brief.sh\")",
+      "Bash(bash \"/Users/roseyrr/Frida - EA/scripts/morning_brief.sh\")",
+      "Bash(bash \"/Users/roseyrr/Frida - EA/scripts/get_calendar.sh\" 7)",
+      "Bash(osascript -e 'tell application \"\"Calendar\"\" to get name of every calendar')",
+      "Bash(bash \"/Users/roseyrr/Frida - EA/scripts/get_reminders.sh\")",
+      "Bash(bash scripts/get_calendar.sh 7)",
+      "Bash(bash scripts/get_reminders.sh)",
+      "Bash(xcrun --sdk macosx swiftc \"/Users/roseyrr/Frida - EA/scripts/get_reminders.swift\" -o \"/Users/roseyrr/Frida - EA/scripts/get_reminders_bin\")",
+      "Bash(chmod +x \"/Users/roseyrr/Frida - EA/scripts/sync_agents.sh\" \"/Users/roseyrr/Frida - EA/scripts/hook_agent_sync.sh\")",
+      "Bash(bash \"/Users/roseyrr/Frida - EA/scripts/sync_agents.sh\")",
+      "Read(//Applications/**)",
+      "Bash(python3 -c \"import EventKit\")",
+      "Bash(python3 -c \"import objc; print\\(objc.__version__\\)\")",
+      "Bash(pip3 install:*)",
+      "Bash(python3 scripts/get_reminders.py)",
+      "Bash(gh auth:*)",
+      "Bash(gh api:*)"
+    ],
+    "additionalDirectories": [
+      "/Users/roseyrr/Frida - EA/.claude"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"/Users/roseyrr/Frida - EA/scripts/hook_agent_sync.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
